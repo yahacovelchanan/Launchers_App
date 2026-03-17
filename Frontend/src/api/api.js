@@ -1,3 +1,5 @@
+import { data } from "react-router";
+
 const BASE_URL="http://localhost:3005";
 
 export async function getAllLaunchers (token){
@@ -6,7 +8,7 @@ export async function getAllLaunchers (token){
         headers:{'authorization':`Bearer${token}`,
             'Content-type':'application/json'}
     })
-    .then(res=>res.json())
+    .then(res=>res.json(data))
     .then(data=>{
         console.log(data);
         

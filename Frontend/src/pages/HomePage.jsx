@@ -5,10 +5,9 @@ export default function HomePage() {
     const [data,setData]=useState([])
     useEffect(()=>{
         getAllLaunchers()
-        .then(getAllLaunchers=>{
-            setData(getAllLaunchers)})
-        
-        
+        setData(()=>{
+            getAllLaunchers
+        }) 
     },[])
   return (
     <div className='overflow-x-auto p-4'>
