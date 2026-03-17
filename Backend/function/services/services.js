@@ -35,6 +35,7 @@ export async function insert(city,rocketType,latitude,longitude,name){
   rocketType:rocketType,
   latitude:latitude,
   longitude:longitude,
+  destroyed:false,
   name:name
 });
 return {"insert":result}
@@ -44,6 +45,15 @@ export async function deleteOne(id){
     const res = await collection.deleteOne({ _id: new ObjectId(id) });
     console.log(res.deletedCount);
 }
+export async function update(id) {
+  const result = await collection.updateOne(
+  { _id: new ObjectId(id)} ,
+  { $set: { destroyed:true} }
+);
+return result
+}
+
+
 
 
 run();

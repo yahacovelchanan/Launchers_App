@@ -1,4 +1,4 @@
-import { deleteOne, findAll, findById, insert } from "../services/services.js"
+import { deleteOne, findAll, findById, insert ,update} from "../services/services.js"
 
 
 export const getAllLaunchers =async (req,res)=>{
@@ -10,6 +10,13 @@ export const getLauncherById =async (req,res)=>{
     const launcherById=await findById(idForSearch)
     return res.json(launcherById)
 }
+
+export const launcherDestroyed =async(req,res)=>{
+    const idForUpdate=req.body.id
+    const destroyedLauncher=await update(idForUpdate)
+    return res.json({msg:"The launcher was successfully destroyed."},destroyedLauncher)
+}
+
 export const createLauncher =async(req,res)=>{
     const {city,rocketType,latitude,longitude,name} =req.body
     const newLauncher=await insert(city,rocketType,latitude,longitude,name)
@@ -20,4 +27,5 @@ export const deleteLauncherById = async(req,res) => {
     await deleteOne(idForDelete)
     return res.json({msg:"The launcher was successfully deleted."})
 }
+
 
